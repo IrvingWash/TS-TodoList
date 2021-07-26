@@ -1,5 +1,15 @@
+import { Navbar } from './components/Navbar';
+import { TodoForm } from './components/TodoForm';
+
 const App = () => {
-  return <div className='App'>App</div>;
+  return (
+    <>
+      <Navbar />
+      <div className='container'>
+        <TodoForm />
+      </div>
+    </>
+  );
 };
 
 export default App;
