@@ -4,6 +4,8 @@ import { Navbar } from './components/Navbar';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
 
+declare var confirm: (question: string) => boolean;
+
 const App = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
@@ -30,9 +32,12 @@ const App = () => {
   };
 
   const removeTodoHandler = (id: number) => {
-    setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.id !== id);
-    });
+    const shouldRemove = confirm('Are you sure you want to delete this todo?');
+    if (shouldRemove) {
+      setTodos((prevTodos) => {
+        return prevTodos.filter((todo) => todo.id !== id);
+      });
+    }
   };
 
   return (
