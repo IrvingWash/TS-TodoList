@@ -18,12 +18,33 @@ const App = () => {
     });
   };
 
+  const toggleCompletedHandler = (id: number) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const removeTodoHandler = (id: number) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
     <>
       <Navbar />
       <div className='container'>
         <TodoForm onAddTodo={addTodoHandler} />
-        <TodoList todos={todos} />
+        <TodoList
+          todos={todos}
+          onToggle={toggleCompletedHandler}
+          onRemove={removeTodoHandler}
+        />
       </div>
     </>
   );
