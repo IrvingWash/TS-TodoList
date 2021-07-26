@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
 export const TodoForm = () => {
-  const [todo, setTodo] = useState<string>('');
-
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTodo(event.target.value);
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const todoSubmitHandler = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      console.log(todo);
-      setTodo('');
+      console.log(inputRef.current!.value);
+      inputRef.current!.value = '';
     }
   };
 
@@ -19,10 +15,9 @@ export const TodoForm = () => {
       <input
         type='text'
         id='title'
+        ref={inputRef}
         placeholder='Enter a todo'
-        onChange={inputChangeHandler}
         onKeyPress={todoSubmitHandler}
-        value={todo}
       />
       <label htmlFor='title' className='active'>
         Enter a todo
