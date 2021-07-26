@@ -12,6 +12,10 @@ export const TodoList: React.FC<TodoListProps> = ({
   onToggle,
   onRemove,
 }) => {
+  if (todos.length === 0) {
+    return <p className='center'>No todos</p>;
+  }
+
   return (
     <ul>
       {todos.map((todo) => {
@@ -19,7 +23,6 @@ export const TodoList: React.FC<TodoListProps> = ({
         if (todo.completed) {
           classes.push('completed');
         }
-
         return (
           <li className={classes.join(' ')} key={todo.id}>
             <label>
