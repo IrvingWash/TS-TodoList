@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <nav>
@@ -7,10 +8,10 @@ export const Navbar = () => {
         </a>
         <ul className='right hide-on-med-and-down'>
           <li>
-            <a href='/'>Todo list</a>
+            <NavLink to='/'>Todo list</NavLink>
           </li>
           <li>
-            <a href='/'>Information</a>
+            <NavLink to='/about'>Information</NavLink>
           </li>
         </ul>
       </div>
